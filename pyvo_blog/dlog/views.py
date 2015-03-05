@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from dlog.forms import EntryForm
@@ -60,6 +61,12 @@ def entry_update(request, slug):
     }
 
     return render(request, 'dlog/entry_form.html', context)
+
+
+def entry_delete(request, slug):
+    entry = get_object_or_404(Entry, slug=slug)
+    entry.delete()
+    return redirect('home')
 
 
 class EntryDetail(generic.DetailView):
