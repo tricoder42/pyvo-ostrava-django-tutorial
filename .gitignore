@@ -1,0 +1,19 @@
+# python cache
+*.py[oc]
+__pycache__/
+
+# build or test files
+*.mo
+*.egg-info/
+.cache/
+static/build/
+
+# IDE files
+.idea/
+*.sublime-*
+
+# Everything temporary
+tmp/
+static/bower_components/
+static/node_modules/
+static/tests/e2e/build/
