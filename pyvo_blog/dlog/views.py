@@ -8,3 +8,16 @@ def home(request):
     }
 
     return render(request, 'dlog/homepage.html', context)
+
+
+def detail(request, slug):
+    try:
+        entry = Entry.objects.get(slug=slug)
+    except Entry.DoesNotExist:
+        entry = None
+
+    context = {
+        'entry': entry,
+    }
+
+    return render(request, 'dlog/entry_detail.html', context)

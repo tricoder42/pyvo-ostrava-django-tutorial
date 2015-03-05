@@ -4,7 +4,8 @@
 <ul>
 {% for entry in entries_list %}
     <li>
-      <a href="">{{ entry.title }}</a>
+{#      {% url 'entry_detail' slug=slug %}#}
+      <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
     </li>
 {% endfor %}
 </ul>
