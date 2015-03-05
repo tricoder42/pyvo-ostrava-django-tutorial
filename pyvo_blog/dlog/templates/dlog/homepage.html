@@ -1,5 +1,9 @@
 <h1>Pyvo blog</h1>
 
+{% if user.is_authenticated %}
+  <a href="{% url "entry_create" %}">Nový zápis</a>
+{% endif %}
+
 {% if entries_list %}
 <ul>
 {% for entry in entries_list %}
