@@ -1,0 +1,15 @@
+<h1>Pyvo blog</h1>
+
+{% if entries_list %}
+<ul>
+{% for entry in entries_list %}
+    <li>
+      <a href="">{{ entry.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% else %}
+  <p>Ahoj! Stránka je zrovna ve výstavbě. Očekávané spuštění jaro 1998.</p>
+
+{% endif %}
