@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from dlog.forms import EntryForm
 from dlog.models import Entry
@@ -33,7 +33,33 @@ def entry_create(request):
         'form': form
     }
 
-    return render(request, 'dlog/entry_create.html', context)
+    return render(request, 'dlog/entry_form.html', context)
+
+
+def entry_update(request, slug):
+    obj = get_object_or_404(Entry, slug=slug)
+
+    if request.POST:
+        # form submitted
+        form = EntryForm(data=request.POST, instance=obj)
+
+        if form.is_valid():
+            # data are valid
+            obj = form.save()
+            return redirect(obj)
+        else:
+            # data are invalid, return template with form errors
+            pass
+
+    else:
+        # display empty form
+        form = EntryForm(instance=obj)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'dlog/entry_form.html', context)
 
 
 class EntryDetail(generic.DetailView):
