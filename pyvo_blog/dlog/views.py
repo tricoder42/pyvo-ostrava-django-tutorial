@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 from dlog.models import Entry
 
 
@@ -10,14 +11,9 @@ def home(request):
     return render(request, 'dlog/homepage.html', context)
 
 
-def detail(request, slug):
-    try:
-        entry = Entry.objects.get(slug=slug)
-    except Entry.DoesNotExist:
-        entry = None
+class EntryDetail(generic.DetailView):
+    model = Entry
+    context_object_name = 'entry'
 
-    context = {
-        'entry': entry,
-    }
 
-    return render(request, 'dlog/entry_detail.html', context)
+detail = EntryDetail.as_view()
